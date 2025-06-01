@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+# Noxiousvoid - Portfólio de Body Piercing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo ao repositório do site [Noxiousvoid](https://noxiousvoid.onrender.com/), o portfólio profissional do estúdio de body piercing Noxiousvoid, localizado em São Paulo, Brasil. Este projeto é uma aplicação web moderna construída com **React**, **TypeScript**, **Vite** e **Tailwind CSS**, oferecendo uma experiência elegante e responsiva para exibição de serviços, portfólio e informações de contato.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Design Gótico e Responsivo**: Interface otimizada para dispositivos móveis e desktop, com estética minimalista e navegação fluida.
+- **Carrossel de Portfólio**: Exibe imagens de piercings com descrições, utilizando `react-slick` (com planos de migração para `Swiper` para melhor compatibilidade com TypeScript).
+- **Seções Dinâmicas**: Inclui seções para Sobre, Serviços, Portfólio e Contato, com integração de comentários via Disqus.
+- **Integração com Redes Sociais**: Links diretos para Instagram e WhatsApp para agendamento e interação.
+- **SEO e Acessibilidade**: Estrutura otimizada para motores de busca e acessibilidade.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
