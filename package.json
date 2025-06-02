@@ -54,6 +54,7 @@
     "react-day-picker": "8.10.1",
     "react-disqus-comments": "^1.4.0",
     "react-dom": "^18.3.1",
+    "react-ga4": "^2.1.0",
     "react-hook-form": "^7.54.2",
     "react-resizable-panels": "^2.1.7",
     "react-slick": "^0.30.3",

@@ -24,7 +24,7 @@ import {
   useMediaQuery,
   Drawer,
   // Avatar, // Removed unused import
-  // Link, // Removed unused import
+  Link, // Import Link for the footer credit
   // TextField, // Removed unused import
   Fab,
   Stack,
@@ -46,11 +46,19 @@ import {
 } from '@mui/icons-material';
 import Slider from "react-slick";
 import ReactDisqusComments from 'react-disqus-comments'; // Import Disqus component
+import ReactGA from 'react-ga4'; // Import Google Analytics
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 // Assuming themeOptions is the correct export now
 import { themeOptions } from './themeMinimalist'; 
 import './App.css';
+
+// --- Google Analytics Initialization ---
+const GA_MEASUREMENT_ID = "G-S0DQCB0C99"; 
+ReactGA.initialize(GA_MEASUREMENT_ID);
+// Send initial pageview
+ReactGA.send({ hitType: "pageview", page: window.location.pathname + window.location.search });
+// -------------------------------------
 
 // Interface for Menu Item
 interface MenuItem {
@@ -592,36 +600,37 @@ function App() {
         </Box>
 
         {/* Galeria Section */}
-       <Box id="galeria" sx={{ py: 10, bgcolor: 'background.default' }}>
-  <Container maxWidth="xl">
-    <Typography variant="h2" align="center" gutterBottom sx={{ fontWeight: 600, letterSpacing: '0.02em', mb: 6 }}>
-      Portfólio
-    </Typography>
-    <Slider {...sliderSettings}>
-      {galleryImages.map((item, index) => (
-        <Box key={index} sx={{ px: isMobile ? 0 : 2 }}>
-          <Card sx={{ bgcolor: 'background.paper', height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <CardMedia
-              component="img"
-              height="300"
-              image={item.img}
-              alt={item.title}
-              sx={{ objectFit: 'cover', filter: 'grayscale(20%)' }}
-            />
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography gutterBottom variant="h6" component="div">
-                {item.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {item.description}
-              </Typography>
-            </CardContent>
-          </Card>
+        <Box id="galeria" sx={{ py: 10, bgcolor: 'background.default' }}>
+          <Container maxWidth="xl">
+            <Typography variant="h2" align="center" gutterBottom sx={{ fontWeight: 600, letterSpacing: '0.02em', mb: 6 }}>
+              Portfólio
+            </Typography>
+            <Slider {...sliderSettings}>
+              {galleryImages.map((item, index) => (
+                <Box key={index} sx={{ px: isMobile ? 0 : 2 }}>
+                  <Card sx={{ bgcolor: 'background.paper', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      image={item.img}
+                      alt={item.title}
+                      sx={{ objectFit: 'cover', filter: 'grayscale(20%)' }}
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h6" component="div">
+                        {item.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              ))}
+            </Slider>
+          </Container>
         </Box>
-      ))}
-    </Slider>
-  </Container>
-</Box>
+
         {/* Serviços Section */}
         <Box id="servicos" sx={{ py: 10, bgcolor: 'background.paper' }}>
           <Container maxWidth="lg">
@@ -700,7 +709,7 @@ function App() {
                     </Stack>
                     <Stack direction="row" spacing={1} alignItems="center">
                       <MailOutlineIcon fontSize="small" />
-                      <Typography variant="body2">contato@noxiousvoid.com (Placeholder)</Typography>
+                      <Typography variant="body2">contato@noxiousvoid.com </Typography>
                     </Stack>
                   </Stack>
                   
@@ -735,7 +744,7 @@ function App() {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={'auto'}>
-                <Stack direction="row" spacing={1} justifyContent="center">
+                <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
                   <IconButton 
                     href={`https://instagram.com/${artistInfo.instagram.substring(1)}`} 
                     target="_blank" 
@@ -755,6 +764,12 @@ function App() {
                     <WhatsAppIcon fontSize="small"/>
                   </IconButton>
                 </Stack>
+              </Grid>
+              {/* DataSense.IT Credit */}
+              <Grid item xs={12} sx={{ mt: 1 }}>
+                <Typography variant="caption" color="text.disabled" align="center" display="block">
+                  Criado por <Link href="https://datasenseit.tech/" target="_blank" rel="noopener noreferrer" color="inherit" underline="hover">DataSense.IT</Link>
+                </Typography>
               </Grid>
             </Grid>
           </Container>
